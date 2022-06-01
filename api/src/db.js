@@ -2,9 +2,11 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const axios = require('axios');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
-} = process.env;
+  URL_API_POKEMON_TYPES, PICTURES_TYPES_DIR,
+} = process.env; 
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pokemon`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -30,10 +32,29 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Pokemon } = sequelize.models;
+const { Pokemons, Types } = sequelize.models;
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
+Pokemons.belongsToMany(Types, { through: 'Pokemons_Types' });
+Types.belongsToMany(Pokemons, { through: 'Pokemons_Types' });
+
+// cargar Types de Pokemon
+// ****
+
+axios.get(URL_API_POKEMON_TYPES)
+  .then((response) => {
+    const types = response.data.results;
+
+    const promisesTypes = types.map((type) => {
+      const { name, url } = type;
+      let imageName = PICTURES_TYPES_DIR + name.toLowerCase()+"-types.jpg";
+      return Types.create({ name, url, image: imageName });
+    });
+
+    Promise.all(promisesTypes);    
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
