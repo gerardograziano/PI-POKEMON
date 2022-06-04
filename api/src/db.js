@@ -4,16 +4,19 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
-  URL_API_POKEMON_TYPES, PICTURES_TYPES_DIR,
+  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME,
 } = process.env; 
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pokemon`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
-const basename = path.basename(__filename);
 
+sequelize.authenticate()
+.then( () => console.log('Connection has been established successfully.'))
+.catch(err => {console.error('Unable to connect to the database:'); });
+
+const basename = path.basename(__filename);
 const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
@@ -36,25 +39,6 @@ const { Pokemons, Types } = sequelize.models;
 
 Pokemons.belongsToMany(Types, { through: 'Pokemons_Types' });
 Types.belongsToMany(Pokemons, { through: 'Pokemons_Types' });
-
-// cargar Types de Pokemon
-// ****
-
-axios.get(URL_API_POKEMON_TYPES)
-  .then((response) => {
-    const types = response.data.results;
-
-    const promisesTypes = types.map((type) => {
-      const { name, url } = type;
-      let imageName = PICTURES_TYPES_DIR + name.toLowerCase()+"-types.jpg";
-      return Types.create({ name, url, image: imageName });
-    });
-
-    Promise.all(promisesTypes);    
-  })
-  .catch((error) => {
-    console.log(error);
-  });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
