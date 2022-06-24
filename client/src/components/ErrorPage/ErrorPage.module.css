@@ -1,0 +1,34 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;    
+    align-items: center;
+
+}
+.image{
+    width: 300px;
+    padding-top: 40px;
+}
+
+.text_404{
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'VT323', monospace;
+    padding: 5px 0px 5px 10px;
+    text-align: center;
+    color: black;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.text_error{
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'VT323', monospace;
+    padding: 5px 0px 5px 10px;
+    text-align: center;
+    color: black;
+    width: 100%;
+    margin-top: 10px;
+}

@@ -168,7 +168,6 @@ async function getPokemonApiByName(nameSearch) {
 
 async function getPokemonsDbByName(nameSearch){ 
 
-    console.log("estoy en metodo getPokemonsDbByName");
     try{
         const searchPokemon = await Pokemons.findOne({
             where: Sequelize.where(
@@ -185,10 +184,8 @@ async function getPokemonsDbByName(nameSearch){
             }
         });
 
-        console.log("searchPokemon", searchPokemon);
         return searchPokemon;
     } catch(error){
-        console.log("error", error);
         return error;
     }
 }

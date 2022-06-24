@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico de barrasL</title>
+ 
+
+<style>
+    /**************************
+BAR-CHART
+**************************/
+.grafico.bar-chart {
+  background: #3468AF;
+  padding: 0 1rem 2rem 1rem;
+  width: 100%;
+  height: 60%;
+  position: relative;
+  color: #fff;
+  font-size: 80%;
+}
+.bar-chart [class^='eje-'] {
+  padding: 0 1rem 0 2rem;
+  bottom: 1rem;
+}
+.bar-chart .eje-x {
+  bottom: 0;
+}
+ .bar-chart .eje-y li {
+  height: 20%;
+  border-top: 1px solid #fff;
+}
+.bar-chart .eje-x li {
+  width: 14%;
+  position: relative;
+  text-align: left;
+}
+.bar-chart .eje-x li i {
+  transform: rotatez(-45deg) translatex(-1rem);
+  transform-origin: 30% 60%;
+  display: block;
+}
+.bar-chart .eje-x li:before {
+  content: '';
+  position: absolute;
+  bottom: 1.9rem;
+  width: 70%;
+  right: 5%;
+  box-shadow: 3px 0 rgba(0,0,0,.1), 3px -3px rgba(0,0,0,.1);
+}
+.bar-chart .eje-x li:nth-child(1):before {
+  background: #E64C65;  
+  height: 570%;
+}
+.bar-chart .eje-x li:nth-child(2):before {
+  background: #11A8AB;  
+  height: 900%;
+}
+.bar-chart .eje-x li:nth-child(3):before {
+  background: #FCB150;  
+  height: 400%;
+}
+.bar-chart .eje-x li:nth-child(4):before {
+  background: #4FC4F6;  
+  height: 290%;
+}
+.bar-chart .eje-x li:nth-child(5):before {
+  background: #FFED0D;  
+  height: 720%;
+}
+.bar-chart .eje-x li:nth-child(6):before {
+  background: #F46FDA;  
+  height: 820%;
+}
+.bar-chart .eje-x li:nth-child(7):before {
+  background: #15BFCC;  
+  height: 520%;
+}
+</style>
+
+</head>
+<body>
+ 
+    <div class="bar-chart-block block">
+        <h2 class='titular'>By Country <span>*1000</span></h2>
+        <div class='grafico bar-chart'>
+           <ul class='eje-y'>
+             <li data-ejeY='60'></li>
+             <li data-ejeY='45'></li>
+             <li data-ejeY='30'></li>
+             <li data-ejeY='15'></li>
+             <li data-ejeY='0'></li>
+           </ul>
+           <ul class='eje-x'>
+             <li data-ejeX='37'><i>España</i></li>
+             <li data-ejeX='56'><i>Portugal</i></li>
+             <li data-ejeX='25'><i>Italia</i></li>
+             <li data-ejeX='18'><i>Grecia</i></li>
+             <li data-ejeX='45'><i>EE.UU</i></li>
+             <li data-ejeX='50'><i>México</i></li>
+             <li data-ejeX='33'><i>Chile</i></li>
+           </ul>
+        </div>
+      </div>
+                </div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+
+
+
+
+input[type="range"]{
+  -webkit-appearance:none;
+  width:250px;
+  height:25px;
+  margin:10px 20px;
+  background: linear-gradient(to right, #4ba857 0%, #f2de05 80%, #8b0313 100%);
+  background-size:250px 15px;
+  background-position:center;
+  background-repeat:no-repeat;
+  overflow:hidden;
+  outline: none;
+  border: solid 2px #f2de05;
+  outline: solid 1px #ffffff;
+}
+
+input[type="range"]:first-of-type{
+  margin-top:10px;
+}
+
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:20px;
+  height:20px;
+  background: linear-gradient(to right, hwb(0 100% 0%) 0%, #f2de05 80%);
+  position:relative;
+  border: solid 1px;
+  z-index:3;
+  box-shadow:0 0 2px 0 rgba(0,0,0,0.3);
+}
+
+input[type="range"]::-webkit-slider-thumb:after{
+  content:" ";
+  width:250px;
+  height:10px;
+  position:absolute;
+  z-index:1;
+  right:20px;
+  top:5px;
+  background: #ff5b32;
+}
+
+
+.rangeForm{
+  width:100%;
+  margin:0 auto;
+  display:inline;
+}
+
+
+.labelRange{
+  width: 50px;
+  text-align:right;
+  color:white;
+  font-family: "VT323", monospace;
+  font-size: 16px;
+  margin-left: 25px;
+  margin-top: 0px;
+}
+
+.labelRangeNumber{
+  width: 35px;
+  text-align:center;
+  color:white;
+  font-family: "VT323", monospace;
+  font-size: 20px;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  margin-right: 40px;
+  margin-top: 0px;
+}
+
+.rangeGroup{
+  width:100%;
+  display:flex;
+  justify-content:flex-start;
+  flex-direction: row;
+  align-items: center;
+}

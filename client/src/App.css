@@ -1,8 +1,24 @@
-.App {
+ 
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body{
+  margin:0;
+}
+
+h1{
+  font-family: 'VT323', monospace;
+}
+
+*{
+  box-sizing: border-box;
+} 
+
+
+/* .App {
   text-align: center;
 }
 
-.App-logo {
+ .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +51,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

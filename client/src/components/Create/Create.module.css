@@ -1,0 +1,345 @@
+.containerPrincipal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0px;
+  }
+
+.container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 500px;
+    padding-top: 10px;
+    background-color: #cd1d02;
+    margin-bottom: 200px;
+    border-radius: 50px 0px 65px 0px;
+    -moz-border-radius: 50px 0px 65px 0px;
+    -webkit-border-radius: 50px 0px 65px 0px;
+    border: 10px solid #f20e0e;
+}
+
+
+.itemContainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: start;
+  align-items: center;
+}
+
+
+.itemContainerRange{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  border: solid 1px #f3ea89;
+  outline: solid 1px #ffffff;
+  background-color: #f20e0e;
+  border-radius: 100px;
+  padding: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 20px;
+}
+
+.inputGroupTypes{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  border: solid 1px #f3ea89;
+  outline: solid 1px #ffffff;
+  background-color: #f20e0e;
+  border-radius: 10px;
+  padding: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-left: 10px;
+  margin-right: 20px;
+  height: 30px;
+  width: 100%;
+}
+
+
+
+.containerPreview{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 300px;
+  height: 450px;
+  background-color: #cd1d02;
+  
+  margin-left: 30px;
+  border-radius: 50px 0px 65px 0px;
+  -moz-border-radius: 50px 0px 65px 0px;
+  -webkit-border-radius: 0px 30px 65px 0px;
+  border: 10px solid #f20e0e;
+}
+
+
+.containerErrorTypes{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin-top: 5px;
+  margin-left: 0px;
+}
+
+
+
+.containerPreview_Card{
+  display: inline;
+  position: absolute;
+  justify-content: center;
+  
+  margin-top: 60px;
+  margin-left: -10px;
+    
+}
+
+
+
+
+
+
+
+.title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'VT323', monospace;
+    padding: 5px 0px 5px 10px;
+    text-align: center;
+    color: hsl(0, 0%, 100%);
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+.label{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    font-size: 1rem;
+    width: 75px;
+    font-weight: normal;
+    font-family: 'VT323', monospace;
+    padding: 0px;
+    color: hsl(0, 0%, 100%);
+  }
+
+  .input{
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'VT323', monospace;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #0078d7;
+    border: 1px solid #0078d7;
+    width: 290px;
+    height: 28px;
+    margin: 10px;
+    margin-top: 0px;
+    padding-left: 10px;
+  }
+
+  .inputShort{
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'VT323', monospace;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #0078d7;
+    border: 1px solid #0078d7;
+    width: 57px;
+    height: 28px;
+    margin: 10px;
+    margin-top: 0px;
+    padding-left: 10px;
+  }
+
+  
+  
+
+  .inputGroup{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    border: none;
+    padding: 2px;
+    margin: 0px;
+  }
+
+
+
+
+  .errors{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    border: none;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .danger{
+    margin: 0px;
+    width: 60px;
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-size: 12px;
+    color: rgb(248, 248, 193);
+  }
+
+  .typesNote{
+    margin-left: 90px;
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(248, 248, 193);
+  }
+
+
+  .typesError{
+    margin-left: 75px;
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(248, 248, 193);
+  }
+
+  .text_error_form{
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(243, 118, 9);
+  }
+
+  .conteiner_bar_state{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 35px;
+    padding-top: 10px;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-weight: bold;
+    font-size: 30px;
+    color: rgb(243, 118, 9);
+  }
+
+
+
+  .itemType{
+    margin-left: 10px;
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(248, 248, 193);
+  }
+
+
+  .button_create {
+    margin-right: 5px;
+      width: 160px;
+      height: 40px;
+    box-shadow: 3px 3px 7px -3px #050505;
+    background:linear-gradient(to bottom, #f06000 5%, #b30421 100%);
+    background-color:#f06000;
+    border-radius:4px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family: 'VT323', monospace;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 10px;
+    text-decoration:none;
+    text-shadow:0px 0px 0px #8a3e4b;
+  }
+  
+
+  .button_create:hover {
+    background:linear-gradient(to bottom, #b30421 5%, #f06000 100%);
+    background-color:#b30421;
+    transform: scale(1.1);
+  }
+  
+  .button_create:active {
+    position:relative;
+    top:1px;
+  }
+
+
+  .itemContainer_create{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+
+  }
+
+
+  .types_select{
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: "vt323", monospace;
+    font-size: 16px;
+    font-weight: bolder;
+    color: #d70400;
+    border: 1px solid #d71d00;
+    width: 130px;
+    height: 35px;
+    margin-left: 10px;
+}
+
+
+
+.button_delete {
+  margin-right: 5px;
+    width: 30px;
+    height: 30px;
+  box-shadow: 3px 3px 7px -3px #050505;
+  background:linear-gradient(to bottom, #f06000 5%, #b30421 100%);
+  background-color:#f06000;
+  border-radius:3px;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family: 'VT323', monospace;
+  font-size:12px;
+  font-weight:bold;
+  padding:3px 5px;
+  margin: 3px;
+  text-decoration:none;
+  text-shadow:0px 0px 0px #8a3e4b;
+}
+
+.button_delete:hover {
+  background:linear-gradient(to bottom, #b30421 5%, #f06000 100%);
+  background-color:#b30421;
+  transform: scale(1.1);
+}
+
+.button_delete:active {
+  position:relative;
+  top:1px;
+}

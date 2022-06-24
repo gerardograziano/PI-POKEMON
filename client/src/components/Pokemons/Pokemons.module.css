@@ -1,0 +1,57 @@
+.container_cards{
+    width: 90%;
+    height: auto;
+    margin: 30px auto auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+
+}
+
+.container_loading{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.text_loading{
+    font-family: 'VT323', monospace;
+    font-size: 2rem;
+}
+
+.img_loading{
+    margin: 0;
+    width: 280px;
+}
+
+
+.container_not_found{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.text_not_found{
+    font-family: 'VT323', monospace;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.img_not_found{
+    margin: 0;
+    margin-top: -30px;
+    width: 260px;
+}
+
+
+
+

@@ -45,8 +45,7 @@ router.get('/', async (req, res, next) => {
 
 
 router.get('/:idPokemon', async (req, res, next) => {
-    console.log(' estoy GET /pokemons/:idPokemon');
-
+    
     try {       
         const {idPokemon} = req.params;
 
@@ -125,7 +124,7 @@ router.post('/', async (req, res, next) => {
             });
 
         //  --------- aca agrego la relacion con Types
-        return res.status(201).json(resultPokemon); // pokemon creado
+        return res.status(201).json(resultPokemon[0]); // pokemon creado
     }
     catch (error) {
         next(error);
