@@ -4,12 +4,8 @@ const {  getAllPokemons,
          getPokemonApiByName, getPokemonsDbByName} = require("../utils/utils");
 const { Router } = require('express');
 const router = Router();
-const axios = require('axios');
 const { Sequelize } = require('sequelize');
 const {Pokemons, Types} = require('../db.js');
-
-
-
 
 
 

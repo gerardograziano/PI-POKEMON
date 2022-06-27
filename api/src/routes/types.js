@@ -3,7 +3,7 @@ const axios = require('axios');
 const { Router } = require('express');
 const {Types} = require('../db');
 const {
-    URL_API_POKEMON_TYPES, PICTURES_TYPES_DIR,
+    URL_API_POKEMON_TYPES
   } = process.env; 
 
 const router = Router();
@@ -19,9 +19,7 @@ router.get('/', async (req, res, next) => {
             try{
                 const response = await axios.get(URL_API_POKEMON_TYPES);
                 const typesList = response.data.results.map((t) => {
-                                            return {
-                                            name: t.name,
-                                            image: PICTURES_TYPES_DIR + t.name + '.png'}
+                                            return { name: t.name }
                                             });
                 await Types.bulkCreate(typesList);
                 res.status(200).json(typesList);

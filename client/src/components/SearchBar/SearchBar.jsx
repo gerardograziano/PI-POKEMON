@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState,  useEffect } from "react";
 import { useDispatch, useSelector} from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { resetSearchPokemon, searchPokemon, sortNone } from "../../store/actions/";
+import { loadingSearchSet, resetSearchPokemon, searchPokemon } from "../../store/actions/";
 import lupa from "../../pictures/search-Pokemon.png";
 import Pagination from "../Pagination/Pagination";
 import style from "./SearchBar.module.css";
-import { useEffect } from "react";
+
 
 export default function SearchBar(){
     const [search, setSearch] = useState("");
@@ -14,23 +14,26 @@ export default function SearchBar(){
 
     const pokemonFound = useSelector((state) => state.pokemonFound);
     const searchingPokemon = useSelector((state) => state.searchingPokemon);
+    const loadingPokemons = useSelector((state) => state.loadingPokemons);
     const notFound = useSelector((state) => state.notFound);
 
    
 
     useEffect(() =>{
-        if ((pokemonFound && Object.entries(pokemonFound).length > 0 ) && (searchingPokemon)){
-            dispatch(resetSearchPokemon());
-            dispatch(sortNone());
+        if (!notFound && searchingPokemon && !loadingPokemons)
+        {   
+            dispatch(resetSearchPokemon());     
             navigate(`/pokemons/${pokemonFound.id}`);
         }
     },[pokemonFound])
     
 
+    //console.log(pokemonFound);
       
     function onSubmit(e){
         e.preventDefault();      
         if (search.length > 0) {
+            dispatch(loadingSearchSet());
             dispatch(searchPokemon(search.toLowerCase()));
             setSearch("");
         }

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { filterByType, filterByPokemon } from '../../store/actions';
+import { filterByType, filterByPokemon, resetSearchPokemon } from '../../store/actions';
 import { ALL_POKEMONS, API_POKEMONS, DB_POKEMONS } from '../../constants/filter';
 import styles from "./Filters.module.css";
 
@@ -12,6 +12,7 @@ export default function Filters() {
     
     function onChangeTypes(e){
         e.preventDefault();
+        dispatch(resetSearchPokemon());
         dispatch(filterByType(e.target.value));
     }
 

@@ -11,7 +11,8 @@ import { useEffect } from 'react';
 const MAX_TYPES = 2;
 const stringRegExp = /^[a-zA-Z]{1,20}$/;
 const numberRegExp = /^([1-9][0-9]{0,2}|1000)$/;
-const urlRegExp = /(http|https?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+//const urlRegExp = /(http|https?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+const urlRegExp = /(http|https?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/;
 
 
 export function validate(input) {
@@ -99,7 +100,7 @@ export default function Create(){
         }
 
         if ((e.target.name === 'height') || (e.target.name === 'weight')) {
-           if (!numberRegExp.test(e.target.value) && e.target.value.length != 0) {
+           if (!numberRegExp.test(e.target.value) && e.target.value.length !== 0) {
               return false;
            }
         }
@@ -183,8 +184,7 @@ export default function Create(){
               dispatch(createPokemon(input));
         } else {
           setErrors({
-            ...errors,
-            ["incomplete_form"] : "You must complete the form correctly before sending."
+            ...errors
           })
         }
       }
@@ -208,14 +208,15 @@ export default function Create(){
     useEffect(() => {
       setInput(inputStateInitial);
       inicializarForm();
-      setTimeout(()=>{dispatch(resetCreatedPokemon())},2000);
-
+      setTimeout(()=>{dispatch(resetCreatedPokemon())},3000);
+      // eslint-disable-next-line
     },[createdPokemon]);
 
 
     useEffect(() => {
       errorCreate();
-      setTimeout(()=>{dispatch(resetCreatedPokemon())},2000);
+      setTimeout(()=>{dispatch(resetCreatedPokemon())},3000);
+      // eslint-disable-next-line
     },[error_msg]);
 
 
@@ -247,7 +248,7 @@ export default function Create(){
                 {    
                   // Errores de formulario
                   <div className={styles.text_error_form}>
-                      {(Object.keys(errors).length != 0) && 
+                      {(Object.keys(errors).length !== 0) && 
                             "You must complete the form correctly before sending."   
                       }                  
                         
@@ -324,8 +325,8 @@ export default function Create(){
                       <select className={styles.types_select}  defaultValue="0" id="typesSelect"
                           onChange={onChangeTypes} name="types">
                           <option value="0">Select Types</option>
-                          {types.map(type => (
-                              <option key={type.name} value={type.name}>{type.name}</option>
+                          {types.map((type, index )=> (
+                              <option key={index} value={type.name}>{type.name}</option>
                           ))}
                     </select>
                     

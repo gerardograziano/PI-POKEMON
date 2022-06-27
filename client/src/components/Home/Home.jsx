@@ -6,10 +6,10 @@ import Pokemons from '../Pokemons/Pokemons';
 import styles from "./Home.module.css";
 
 
+
 export default function Home() {
 
     const pokemons = useSelector((state) => state.filteredPokemons); 
-    
 
     return (
     <div >
@@ -29,7 +29,7 @@ export default function Home() {
                 <Pokemons pks={pokemons} />  
             </div>
         </div>
-        
+     
     </div>
     );
 }

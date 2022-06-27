@@ -4,11 +4,11 @@ import { useDispatch , useSelector } from "react-redux";
 import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import Pokemon from "../Pokemon/Pokemon";
-import { getPokemonById } from "../../store/actions";
+import { getPokemonById, resetDetails, loadingDetailsSet } from "../../store/actions";
 import styles from "./Details.module.css";
 import "./bars.css";
 import pictureAsh from "../../pictures/ash.png";
-import loading from "../../pictures/Pikachu_Caminando.gif";
+import imgLoading from "../../pictures/Pikachu_Caminando.gif";
 import { MAX_STATS } from "../../constants/stats"; // maximo varlos de las stats
 
 
@@ -17,23 +17,23 @@ export default function Details(){
     const {id} = useParams();
     const dispatch = useDispatch();
     const pokemonDetails = useSelector(state => state.pokemonDetails);
+    const loading = useSelector(state => state.loadingDetails);
     
 
-    // useEffect(() => {
-    //     if (Object.entries(pokemonDetails).length === 0) dispatch(getPokemonById(id));
-    // }, [pokemonDetails]);
-
-    useEffect(() => {
+    useEffect(  () => {
+        dispatch(resetDetails());
+        dispatch(loadingDetailsSet(true));
         dispatch(getPokemonById(id));
+        // eslint-disable-next-line
     }, [id]);
 
-    
+        
     let barraHP = null;
     let barraAttack = null;
     let barraDefense = null;
     let barraSpeed = null;
     
-    if (pokemonDetails.name) {
+    if (pokemonDetails) {
         
         let porcentajeHP = (pokemonDetails.hp / MAX_STATS) * 100;
         let porcentajeAttack = (pokemonDetails.attack / MAX_STATS) * 100;
@@ -53,10 +53,15 @@ export default function Details(){
     <div >
         <NavBar/>
 
-        {pokemonDetails.name ?    // verificacion de que el pokemon este cargado para mostrarlo
+        { loading ?
+               (<>
+               <div className={styles.container_loading}>
+                    <img src={imgLoading} alt="Loading..." />
+                    Loading...
+                </div></>)
+        :    // verificacion de que el pokemon este cargado para mostrarlo
             
-            
-            <div className={styles.container}>
+            (<div className={styles.container}>
                 <div className={styles.details_container_title}>
                     <h1 className={styles.details_title}>POKÉMON DETAILS</h1>  
                 </div>
@@ -101,12 +106,10 @@ export default function Details(){
                         </div>
                     </div>
                 </div>
-            </div>
-            :   <div className={styles.container_loading}>
-                    <img src={loading} />
-                    Loading...
-                </div>
-            } 
+            </div>)
+            }   
+
+          
         </div>
     );
 

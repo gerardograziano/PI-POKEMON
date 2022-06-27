@@ -51,7 +51,6 @@
   }
 
   .text_cita{
-    /* display: inline; */
     font-size: .8rem;
     font-weight: bold;
     font-family: 'VT323', monospace;
@@ -61,10 +60,10 @@
 
 
   .text{
-    display: inline;
-    font-size: 1rem;
+    font-size: .9rem;
+    text-align: justify;
     font-weight: bold;
     font-family: 'VT323', monospace;
-    padding: 5px 0px 5px 10px;
+    padding: 0px 0px 5px 10px;
     color: hsl(0, 0%, 0%);
   }

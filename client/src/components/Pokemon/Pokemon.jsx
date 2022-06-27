@@ -13,9 +13,9 @@ export default function Pokemon ({name, image, types, id}) {
                 </div>
             
             <div className={styles.card_container_types}>
-                    {
-                        types.map((type) => {
-                            return <span className={styles.types_name} key={type.name}>{type.name}</span>
+                    {types &&
+                        types.map((type, index) => {
+                            return <span className={styles.types_name} key={index}>{type.name}</span>
                         })
                     }
             </div>

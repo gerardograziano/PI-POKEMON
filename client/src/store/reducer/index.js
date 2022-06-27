@@ -2,8 +2,9 @@ import {    GET_POKEMONS, GET_TYPES, FILTER_TYPE, FILTER_POKEMON,
             SEARCH_POKEMON, GET_POKEMON_DETAILS, CREATE_POKEMON,
             MODIFY_PAGE, TOP_PAGE, BOTTOM_PAGE,
             SORT_NONE, SORT_NAME, SORT_ATTACK, 
-            RESET_DETAILS, RESET_CREATED_POKEMON, RESET_SEARCH_POKEMON,
-            ERROR_CREATED_POKEMON, ERROR_SEARCH_POKEMON, ERROR_GET_POKEMONS} from "../actions";
+            RESET_DETAILS, RESET_CREATED_POKEMON, RESET_SEARCH_POKEMON, RESET_DETAILS_POKEMON,
+            ERROR_CREATED_POKEMON, ERROR_SEARCH_POKEMON, ERROR_GET_POKEMONS, 
+            LOADING_POKEMONS, LOADING_DETAILS, LOADING_SEARCH} from "../actions";
 import { ASCENDENT, DESCENDENT } from "../../constants/sort";
 import { ALL_TYPES, API_POKEMONS, DB_POKEMONS } from "../../constants/filter";
 
@@ -14,9 +15,9 @@ const initialState = {
     pokemonDetails: {},
     types: [],
     // -------------------------- filter and order --------------------------------
+    sortNone: true,
     filterTypes: false,
     filterPokemons: false,
-    sortNone: true,
     sortAlfabetico:[false, false],
     sortAttack:[false, false],
     
@@ -29,10 +30,14 @@ const initialState = {
     createdPokemon: false,
 
     // ---------------------------- error -------------------------------------------
-    notFound: true,   // filtro o busqueda no encontrado
-    searchingPokemon : false,
+    notFound: true,   // filtro no encontrado
+    notFoundSearch: true,   // busqueda no encontrado
     error_msg: "",
 
+    // ---------------------------- loading -------------------------------------------
+    loadingDetails: false,
+    loadingPokemons: false,
+    searchingPokemon : false, // --> indica que el loading es por la busqueda
 }
 
 
@@ -73,6 +78,15 @@ export default function reducer(state = initialState, action){
     switch (action.type) {
 
 
+
+        case RESET_DETAILS_POKEMON:{
+            return {
+                ...state,
+                pokemonDetails: {},
+            }
+        }
+
+
         case RESET_CREATED_POKEMON:{
             return {
                 ...state,
@@ -85,18 +99,50 @@ export default function reducer(state = initialState, action){
         case RESET_SEARCH_POKEMON:{
             return {
                 ...state,
-                notFound: true, 
+                pokemonFound:{},
+                notFoundSearch: true, 
                 searchingPokemon : false,
+                loadingPokemons: false,
             }
         }
 
         case ERROR_SEARCH_POKEMON:{
             return {
                 ...state,
-                notFound: true, 
+                notFoundSearch: true, 
                 searchingPokemon : true,
+                loadingPokemons: false,
             }
         }
+
+
+        case LOADING_DETAILS:{
+            return {
+                ...state,
+                loadingDetails: action.payload,
+            }
+        }
+
+        case LOADING_POKEMONS:{
+            return {
+                ...state,
+                loadingPokemons: action.payload,
+            }
+        }
+
+
+        case LOADING_SEARCH:{
+            return {
+                ...state,
+                pokemonFound:{},
+                pokemonDetails:{},
+                notFound: false, 
+                notFoundSearch: false, 
+                searchingPokemon : true,
+                loadingPokemons: true,
+            }
+        }
+
 
 
         case ERROR_CREATED_POKEMON:{
@@ -163,16 +209,8 @@ export default function reducer(state = initialState, action){
                 ...state,
                 pokemons: action.payload,  // recibe un arreglo con todos los pokemons
                 filteredPokemons: action.payload,
-                pokemonDetails: {},
-                pokemonFound: {},
-                sortNone: true,
-                filterTypes: false,
-                filterPokemons: false,
-                sortAlfabetico: [false, false],
-                sortAttack: [false, false],
-                currentPage: 1,
                 totalPokemons: action.payload.length,
-                notFound: (action.payload.length === 0),
+                loadingPokemons: false,
             }
         }
 
@@ -180,9 +218,10 @@ export default function reducer(state = initialState, action){
             return {
                 ...state,
                 pokemonFound: action.payload,  // recibe el pokemon filtrado
-                pokemonDetails: action.payload,
                 notFound: false,
                 searchPokemon: true,
+                loadingPokemons: false, //
+                
             }
         }
 
@@ -203,7 +242,6 @@ export default function reducer(state = initialState, action){
                 filterTypes: action.payload,
                 totalPokemons: backups.length,
                 currentPage: 1,
-                notFound: (backups.length === 0),
             }
         }
 
@@ -217,7 +255,6 @@ export default function reducer(state = initialState, action){
                 filteredPokemons: backups,
                 totalPokemons: backups.length,
                 currentPage: 1,
-                notFound: (backups.length === 0),
             }
         }
 
@@ -234,7 +271,9 @@ export default function reducer(state = initialState, action){
                 sortAlfabetico: [false, false],
                 sortAttack: [false, false],
                 totalPokemons: state.pokemons.length,
-                notFound: (state.filterPokemons.length === 0),
+                currentPage: 1,
+                searchingPokemon: false,
+                loadingPokemons: false,
             }
          }        
         
@@ -251,12 +290,9 @@ export default function reducer(state = initialState, action){
             return {
                 ...state,
                 filteredPokemons: orderPokemons,
-                pokemonDetails: {},
-                pokemonFound: {},
                 sortAlfabetico: [action.payload === ASCENDENT, action.payload === DESCENDENT],
                 sortAttack: [false, false],
                 sortNone: false,
-                notFound: (orderPokemons.length === 0),
             }
         } // Cierre del case SORT
 
@@ -272,12 +308,9 @@ export default function reducer(state = initialState, action){
             return {
                 ...state,
                 filteredPokemons: orderPokemons,
-                pokemonDetails: {},
-                pokemonFound: {},
                 sortAttack: [action.payload === ASCENDENT, action.payload === DESCENDENT],
                 sortAlfabetico: [false, false],
                 sortNone: false,
-                notFound: (orderPokemons.length === 0),
             }
         } // Cierre del case ATTACK
 
@@ -297,7 +330,7 @@ export default function reducer(state = initialState, action){
             return {
                 ...state,
                 pokemonDetails: action.payload,  // recibe el pokemon filtrado
-
+                loadingDetails: false,
             }
         }
        

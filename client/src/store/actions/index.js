@@ -27,13 +27,16 @@ export const BOTTOM_PAGE = 'BOTTOM_PAGE';
 export const CREATE_POKEMON = 'CREATE_POKEMON';
 export const RESET_CREATED_POKEMON = 'RESET_CREATED_POKEMON';
 export const RESET_SEARCH_POKEMON = 'RESET_SEARCH_POKEMON';
-
+export const RESET_DETAILS_POKEMON = 'RESET_DETAILS_POKEMON';
 // --- Action Errors -------------------------------------
 export const ERROR_CREATED_POKEMON = 'ERROR_CREATE_POKEMON';
 export const ERROR_SEARCH_POKEMON = 'ERROR_SEARCH_POKEMON';
 export const ERROR_GET_POKEMONS = 'ERROR_GET_POKEMONS';
 
-
+// --- Action Loadding -------------------------------------
+export const LOADING_DETAILS = 'LOADING_DETAILS';
+export const LOADING_POKEMONS = 'LOADING_POKEMONS';
+export const LOADING_SEARCH = 'LOADING_SEARCH';
 
 
 //  loading pokemons
@@ -50,12 +53,7 @@ export function getPokemons(){
 
         })// cacth generar un dispatch un error
         .catch(error => {
-            // dispatch({
-            //     type: ERROR_POKEMONS,
-            //     payload: response.data, // recibe un arreglo de pokemons
-            // });
-            console.log(error);
-            // ******************** ver como tratar los errores...
+            console.log("Error coneccion BACK");
         });
     }
 }
@@ -69,20 +67,17 @@ export function getTypes(){
     return function (dispatch){ 
         axios.get(REACT_APP_URL_API_PI_TYPES)
         .then(response => {
-            // aqui hay que evaluar la respuesta si devolvio un valor o no.
+            // ordenamiento alfabetico de los types
+            response.data.sort(function (a, b) {
+                return a.name.localeCompare(b.name);}); //
             dispatch({
                 type: GET_TYPES,
                 payload: response.data, // recibe un arreglo de pokemons
             })
         })// cacth generar un dispatch un error
         .catch(error => {
-            // dispatch({
-            //     type: ERROR_POKEMONS,
-            //     payload: response.data, // recibe un arreglo de pokemons
-            // });
-            console.log(error);
-            // ******************** ver como tratar los errores...
-        });
+            console.log("Error coneccion BACK");
+        });        
     }
 }
 
@@ -101,11 +96,7 @@ export function createPokemon(newPokemon){
             dispatch({
                  type: ERROR_CREATED_POKEMON,
                  payload: error.response.data.error, // recibe
-             });
-             // determinar tipo de error., si es por desconexion
-            console.log(error);
-            // console.log(error.response.data.error);
-            // ******************** ver como tratar los errores...
+             });           
         });
     }
 }
@@ -144,11 +135,32 @@ export function searchPokemon(searchName){
         .catch(error => {
             dispatch({
                 type: ERROR_SEARCH_POKEMON,
-                payload: false,});
-            // falta determinar tipo de error por desconexion
-            console.log(error);
-            // ******************** ver como tratar los errores...
+                });
         });
+    }
+}
+
+
+export function loadingDetailsSet(value){
+    return{
+        type: LOADING_DETAILS,
+        payload: value,
+    }
+}
+
+
+
+export function loadingPokemonsSet(value){
+        return{
+            type: LOADING_POKEMONS,
+            payload: value,
+        }
+}
+
+
+export function loadingSearchSet(){
+    return{
+        type: LOADING_SEARCH,
     }
 }
 
@@ -204,7 +216,6 @@ export function filterByPokemon(pokemonType){
 export function resetDetails(){
     return {
         type: RESET_DETAILS,
-        payload: {},
     }
 };
 
@@ -222,8 +233,7 @@ export function getPokemonById(id){
                     });
         }
         catch(error) {
-            console.log(error);
-            // ******************** ver como tratar los errores...
+            
         };
     }
 }
