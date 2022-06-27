@@ -333,8 +333,8 @@ export default function Create(){
                     
                     </div> 
                     <div className={styles.inputGroupTypes}>
-                            {input.types.map(type => (
-                               <div key={type.name}>
+                            {input.types.map((type, index) => (
+                               <div key={index}>
                                   <span className={styles.itemType}>{type.name}</span>
                                   <button className={styles.button_delete} value={type.name} onClick={onClickDelete}>X</button>
                                </div>
@@ -357,25 +357,25 @@ export default function Create(){
                     <div className={stylesBar.rangeGroup}>
                         <span className={stylesBar.labelRange}>HP</span>
                         <input type="range" defaultValue={input.hp} name="hp" onChange={onChangeRange} 
-                              min={0} max={999} />
+                              min={0} max={999} value={input.hp} />
                         <span className={stylesBar.labelRangeNumber}>{input.hp}</span>
                     </div>
                     <div className={stylesBar.rangeGroup}>
                         <span className={stylesBar.labelRange}>ATTACK</span>
                         <input type="range" defaultValue={input.attack} name="attack" onChange={onChangeRange}
-                              min={0} max={999} />
+                              min={0} max={999} value={input.attack}/>
                         <span className={stylesBar.labelRangeNumber}>{input.attack}</span>
                     </div>
                     <div className={stylesBar.rangeGroup}>
                         <span className={stylesBar.labelRange}>DEFENSE</span>
                         <input type="range" defaultValue={input.defense} name="defense" onChange={onChangeRange}
-                              min={0} max={999} />
+                              min={0} max={999} value={input.defense} />
                         <span className={stylesBar.labelRangeNumber}>{input.defense}</span>
                     </div>
                     <div className={stylesBar.rangeGroup}>
                         <span className={stylesBar.labelRange}>SPEED</span>
                         <input type="range" defaultValue={input.speed}  name="speed" onChange={onChangeRange}
-                              min={0} max={999} />
+                              min={0} max={999} value={input.speed} />
                         <span className={stylesBar.labelRangeNumber}>{input.speed}</span>
                     </div>
                   </form>

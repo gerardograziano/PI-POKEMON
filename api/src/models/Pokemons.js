@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { DataTypes, Sequelize } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const path = require('path');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
@@ -74,7 +74,6 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.STRING,
-      defaultValue: PICTURES_DEFAULT_DIR + 'pokeball.png',
     },
   },
   {
