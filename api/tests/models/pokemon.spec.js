@@ -37,6 +37,7 @@ describe('Pokemon model', () => {
         const pokemonOne = await Pokemons.create({name: 'Charizard', hp: 100, attack: 150})
         expect(pokemonOne.toJSON()).to.have.own.property('name');
         expect(pokemonOne.toJSON().name).to.equal('Charizard');
+        let errorDuplicados = null;
         const pokemonTwo = await Pokemons.create({name: 'Charizard', hp: 10, attack: 150});
                 // .then(() => done(new Error('Pokemon already existing')))
                 // .catch((error) => {

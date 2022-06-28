@@ -51,6 +51,7 @@ export default function Pokemons({pks}){
                             <Pokemon id={pokemon.id}
                                 name={pokemon.name}
                                 image={pokemon.image}
+                                attack={pokemon.attack}
                                 types={pokemon.types} key={pokemon.id} />
                         </Link>
                     ) // return.map

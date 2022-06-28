@@ -78,6 +78,7 @@ export default function Details(){
                         <Pokemon id={pokemonDetails.id}
                                 name={pokemonDetails.name}
                                 image={pokemonDetails.image}
+                                attack={pokemonDetails.attack}
                                 types={pokemonDetails.types} key={pokemonDetails.id} />
 
                     </div>
