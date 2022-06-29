@@ -14,7 +14,7 @@ export const SEARCH_POKEMON = 'SEARCH_POKEMON';
 export const GET_TYPES = 'GET_TYPES';
 export const FILTER_TYPE = 'FILTER_TYPE';
 export const FILTER_POKEMON = 'FILTER_POKEMON';
-export const SORT_NONE = 'SORT_NONE';
+export const RESET_FILTER_ORDER = 'RESET_FILTER_ORDER';
 export const SORT_NAME = 'SORT_NAME';
 export const SORT_ATTACK = 'SORT_ATTACK';
 export const RESET_DETAILS = 'RESET_DETAILS';
@@ -45,13 +45,12 @@ export function getPokemons(){
     return function (dispatch){ 
         axios.get(REACT_APP_URL_API_PI_POKEMONS)
         .then(response => {
-            // aqui hay que evaluar la respuesta si devolvio un valor o no.
             dispatch({
                 type: GET_POKEMONS,
                 payload: response.data, // recibe un arreglo de pokemons
             });
 
-        })// cacth generar un dispatch un error
+        }) // error del BACK
         .catch(error => {
             console.log("Error coneccion BACK");
         });
@@ -167,9 +166,9 @@ export function loadingSearchSet(){
 
 
 // order NONE
-export function sortNone(){
+export function resetFilterOrder(){
     return {
-        type: SORT_NONE,
+        type: RESET_FILTER_ORDER,
         payload: null,
     }
 }

@@ -25,11 +25,11 @@ export default function SearchBar(){
             dispatch(resetSearchPokemon());     
             navigate(`/pokemons/${pokemonFound.id}`);
         }
-    },[pokemonFound])
+        
+    },[pokemonFound]);
     
 
-    //console.log(pokemonFound);
-      
+     
     function onSubmit(e){
         e.preventDefault();      
         if (search.length > 0) {

@@ -1,7 +1,7 @@
 import {    GET_POKEMONS, GET_TYPES, FILTER_TYPE, FILTER_POKEMON, 
             SEARCH_POKEMON, GET_POKEMON_DETAILS, CREATE_POKEMON,
             MODIFY_PAGE, TOP_PAGE, BOTTOM_PAGE,
-            SORT_NONE, SORT_NAME, SORT_ATTACK, 
+            RESET_FILTER_ORDER, SORT_NAME, SORT_ATTACK, 
             RESET_DETAILS, RESET_CREATED_POKEMON, RESET_SEARCH_POKEMON, RESET_DETAILS_POKEMON,
             ERROR_CREATED_POKEMON, ERROR_SEARCH_POKEMON,  
             LOADING_POKEMONS, LOADING_DETAILS, LOADING_SEARCH} from "../actions";
@@ -176,7 +176,8 @@ export default function reducer(state = initialState, action){
         case TOP_PAGE:{
             return {
                 ...state,
-                currentPage:  (state.totalPokemons === 0) ? 1 : Math.ceil(state.totalPokemons/state.itemsByPage),
+                currentPage:  (state.totalPokemons === 0) ? 1 : 
+                                Math.ceil(state.totalPokemons/state.itemsByPage), // devuelve el numero entero
             }
         }
 
@@ -186,15 +187,15 @@ export default function reducer(state = initialState, action){
                 id: action.payload.id,
                 name: action.payload.name,
                 image : action.payload.image,
-                types: action.payload.types.map(type => {return{name: type.name}}),
+                types: action.payload.types.map(type => {return{name: type.name}}), // convierte a un array de types
             }
 
             return {
                 ...state,
-                pokemons: [...state.pokemons, newPokemon],
+                pokemons: [...state.pokemons, newPokemon],  // actualiza el store 
                 filteredPokemons: [...state.filteredPokemons, newPokemon],
                 totalPokemons: state.pokemons.length+1,
-                createdPokemon: true,  // <------------
+                createdPokemon: true,  // <--------- muestra mensaje en Create
                 error_msg: '',
             }
         }
@@ -261,7 +262,7 @@ export default function reducer(state = initialState, action){
 
 
 
-        case SORT_NONE:{
+        case RESET_FILTER_ORDER:{   // reset
             return {
                 ...state,
                 filteredPokemons: state.pokemons,
@@ -282,8 +283,8 @@ export default function reducer(state = initialState, action){
         case SORT_NAME:{
             let orderPokemons = [...state.filteredPokemons];
             orderPokemons.sort((a, b) => {
-                if (a.name < b.name) {  return action.payload === ASCENDENT ? -1 : 1; }
-                if (a.name > b.name) {  return action.payload === DESCENDENT ? -1 : 1;}
+                if (a.name.toUpperCase() < b.name.toUpperCase()) {  return action.payload === ASCENDENT ? -1 : 1; }
+                if (a.name.toUpperCase() > b.name.toUpperCase()) {  return action.payload === DESCENDENT ? -1 : 1;}
                 return 0;
             });
 

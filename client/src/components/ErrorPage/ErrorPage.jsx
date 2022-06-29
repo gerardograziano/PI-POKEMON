@@ -1,13 +1,11 @@
 import NavBar from "../NavBar/NavBar";
 import styles from "./ErrorPage.module.css";
 import paginaNotFound from "../../pictures/pagina_not_found.png";
-import { useSelector } from "react-redux";
+
 
 export default function ErrorPage() {
 
-    const pokemons = useSelector(state => state.pokemons);
-
-    return (
+   return (
         <div>
                 <div>
                     <NavBar />

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { NONE } from "../../constants/sort";
-import { sortNone } from "../../store/actions";
+import { resetFilterOrder } from "../../store/actions";
 
 
 export default function OrderNone() {
@@ -9,7 +9,7 @@ export default function OrderNone() {
 
     function onClick(e) {
         e.preventDefault();
-        dispatch(sortNone());
+        dispatch(resetFilterOrder());
        
     }
 
