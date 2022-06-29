@@ -188,6 +188,7 @@ export default function reducer(state = initialState, action){
                 name: action.payload.name,
                 image : action.payload.image,
                 types: action.payload.types.map(type => {return{name: type.name}}), // convierte a un array de types
+                attack: action.payload.attack,
             }
 
             return {
