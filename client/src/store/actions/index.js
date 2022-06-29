@@ -94,7 +94,7 @@ export function createPokemon(newPokemon){
         .catch(error => {
             dispatch({
                  type: ERROR_CREATED_POKEMON,
-                 payload: error.response.data.error, // recibe
+                 payload: error.response.data.error, // recibe error
              });           
         });
     }
@@ -165,7 +165,7 @@ export function loadingSearchSet(){
 
 
 
-// order NONE
+// reset Order Filter
 export function resetFilterOrder(){
     return {
         type: RESET_FILTER_ORDER,
@@ -232,11 +232,13 @@ export function getPokemonById(id){
                     });
         }
         catch(error) {
-            
+            console.log(error);  // error del BACK
         };
     }
 }
 
+
+// ------------------- Pagination --------------------------------
 
 export function modifyPage(valor){
     return {
