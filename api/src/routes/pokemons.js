@@ -116,7 +116,11 @@ router.post('/', async (req, res, next) => {
             where:{ 
                 name: name
              },
-            include: [Types]
+            //include: [Types]
+            include: [{
+                    model: Types,
+                    attributes: ['id', 'name']
+            }]
             });
 
         //  --------- aca agrego la relacion con Types

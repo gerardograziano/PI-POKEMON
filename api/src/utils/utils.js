@@ -14,7 +14,8 @@ async function getPokemonsApi()
       .then(async (response) => {
           let arrayResultApi = response.data.results;
           let arrayPromises = [];
-          arrayResultApi.map((p) => arrayPromises.push(axios.get(p.url)));
+          arrayResultApi.map((p) => arrayPromises.push(axios.get(p.url))); 
+          // se obtiene uno por uno los datos de cada pokemon
         
           await Promise.all(arrayPromises)
           .then((pokemons) => {
@@ -123,9 +124,9 @@ async function getPokemonDbById(idSearch) {
             include:{
                 attributes: ["name"],
                 model: Types,
-                through: {
-                attributes: [],
-                },
+                // through: {
+                // attributes: [],
+                // },
             }
         });
 
