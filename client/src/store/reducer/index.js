@@ -202,15 +202,12 @@ export default function reducer(state = initialState, action){
                 totalPokemons: state.pokemons.length+1,
                 createdPokemon: true,  // <--------- muestra mensaje en Create
                 error_msg: '',
+                currentPage: 1,
             }
         }
 
 
-
-
-
         case GET_POKEMONS:{
-            
             return {
                 ...state,
                 pokemons: action.payload,  // recibe un arreglo con todos los pokemons

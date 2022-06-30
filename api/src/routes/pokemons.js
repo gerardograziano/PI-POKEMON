@@ -85,17 +85,17 @@ router.post('/', async (req, res, next) => {
     }
 
 
-    const findPokemon = await Pokemons.findAll({
-        where: Sequelize.where(
-            Sequelize.fn('lower', Sequelize.col('name')), 
-            Sequelize.fn('lower', name)
-          )
-      });
- 
-      //Verificar que el nombre este disponible.
-      if (findPokemon.length > 0) {
-        return res.status(400).json({ error: "Pokemon name already existing." });}
-    
+        //Verificar que el nombre este disponible.
+        let pokemonSearch = await getPokemonApiByName(name);
+
+        // busqueda en la base de datos
+        if (pokemonSearch.error){ // no encontrado en la API externa
+            pokemonSearch = await getPokemonsDbByName(name); }
+
+        if (pokemonSearch){
+            return res.status(400).json({ error: "Pokemon name already existing." });}
+        
+        
     try {
         const newPokemon = await Pokemons.create(req.body);
 

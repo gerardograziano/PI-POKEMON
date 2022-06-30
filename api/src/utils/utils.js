@@ -124,9 +124,6 @@ async function getPokemonDbById(idSearch) {
             include:{
                 attributes: ["name"],
                 model: Types,
-                // through: {
-                // attributes: [],
-                // },
             }
         });
 
@@ -162,7 +159,8 @@ async function getPokemonApiByName(nameSearch) {
             return null;
         }
     } catch(error){
-        return ({error : "no encontrado"});
+        return ({error : "Not found"});
+        
     }
 }
 
@@ -179,9 +177,7 @@ async function getPokemonsDbByName(nameSearch){
             include:{
                 attributes: ["name"],
                 model: Types,
-                through: {
-                attributes: [],
-                },
+
             }
         });
 
