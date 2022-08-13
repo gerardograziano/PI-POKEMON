@@ -17,7 +17,7 @@
 - Usar y practicar testing.
 
 
-## Enunciado
+## Descripción
 
 Es una aplicación en la cual se puedan ver los distintos Pokemon utilizando la api externa [pokeapi](https://pokeapi.co/) y a partir de ella poder, entre otras cosas:
 
@@ -26,21 +26,13 @@ Es una aplicación en la cual se puedan ver los distintos Pokemon utilizando la 
   - Crear nuevos pokemons
 
 
-### Endpoints/Flags que se pueden utilizar
-
-  - GET https://pokeapi.co/api/v2/pokemon
-  - GET https://pokeapi.co/api/v2/pokemon/{id}
-  - GET https://pokeapi.co/api/v2/pokemon/{name}
-  - GET https://pokeapi.co/api/v2/type
-
-__IMPORTANTE__: No se permitirá utilizar librerías externas para aplicar estilos a la aplicación. Tendrán que utilizar CSS con algunas de las opciones que vimos en dicha clase (CSS puro, CSS Modules o Styled Components)
-
 #### Tecnologías utilizadas:
 - React
 - Redux
 - Express
 - Sequelize - Postgres
 - CSS puro, CSS Modules
+
 
 #### Frontend
 
@@ -65,33 +57,12 @@ __Ruta de detalle de Pokemon__: debe contener
 - [ ] Estadísticas (vida, fuerza, defensa, velocidad)
 - [ ] Altura y peso
 
-__Ruta de creación__: debe contener
-- [ ] Un formulario __controlado con JavaScript__ con los campos mencionados en el detalle del Pokemon
+__Ruta de creación__:
+- [ ] Un formulario __controlado con JavaScript__ 
 - [ ] Posibilidad de seleccionar/agregar más de un tipo de Pokemon
 - [ ] Botón/Opción para crear un nuevo Pokemon
 
-> Es requisito que el formulario de creación esté validado con JavaScript y no sólo con validaciones HTML. Pueden agregar las validaciones que consideren. Por ejemplo: Que el nombre del Pokemon no pueda contener caracteres numéricos, que la altura no pueda ser superior a determinado valor, etc.
-
-#### Base de datos
-
-El modelo de la base de datos deberá tener las siguientes entidades (Aquellas propiedades marcadas con asterísco deben ser obligatorias):
-
-- [ ] Pokemon con las siguientes propiedades:
-  - ID (Número de Pokemon) * : No puede ser un ID de un pokemon ya existente en la API pokeapi
-  - Nombre *
-  - Vida
-  - Fuerza
-  - Defensa
-  - Velocidad
-  - Altura
-  - Peso
-- [ ] Tipo con las siguientes propiedades:
-  - ID
-  - Nombre
-
-La relación entre ambas entidades debe ser de muchos a muchos ya que un pokemon puede pertenecer a más de un tipo y, a su vez, un tipo puede incluir a muchos pokemons.
-
-__IMPORTANTE__: Pensar como modelar los IDs de los pokemons en la base de datos. Existen distintas formas correctas de hacerlo pero tener en cuenta que cuando hagamos click en alguno, este puede provenir de la API o de la Base de Datos por lo que cuando muestre su detalle no debería haber ambigüedad en cual se debería mostrar. Por ejemplo si en la API el pokemon `Bulbasaur` tiene id = 1 y en nuestra base de datos creamos un nuevo pokemon `Henry` con id = 1, ver la forma de diferenciarlos cuando querramos acceder al detalle del mismo.
+> El formulario de creación está validado con JavaScript.
 
 
 #### Backend
@@ -99,13 +70,13 @@ __IMPORTANTE__: Pensar como modelar los IDs de los pokemons en la base de datos.
 Se desarrollo un servidor en Node/Express con las siguientes rutas:
 
 - [ ] __GET /pokemons__:
-  - Obtener un listado de los pokemons desde pokeapi.
+  - Obtiene un listado de los pokemons desde pokeapi.
 
 - [ ] __GET /pokemons/{idPokemon}__:
-  - Obtener el detalle de un pokemon en particular
+  - Obtiene el detalle de un pokemon en particular
 
 - [ ] __GET /pokemons?name="..."__:
-  - Obtener el pokemon que coincida exactamente con el nombre pasado como query parameter (Puede ser de pokeapi o creado por nosotros)
+  - Obtiene el pokemon que coincida exactamente con el nombre pasado como query parameter (Puede ser de pokeapi o creado por nosotros)
   
 - [ ] __POST /pokemons__:
   - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de pokemons por body
@@ -114,4 +85,5 @@ Se desarrollo un servidor en Node/Express con las siguientes rutas:
 - [ ] __GET /types__:
   - Obtiene todos los tipos de pokemons posibles
  
-
+ 
+ 
