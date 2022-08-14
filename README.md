@@ -51,7 +51,7 @@ __Ruta principal__
 - [ ] Opciones para ordenar tanto ascendentemente como descendentemente los pokemons por orden alfabético y por fuerza
 - [ ] Paginado para ir buscando y mostrando los siguientes pokemons, 12 pokemons por pagina.
 
-__Ruta de detalle de Pokemon__: debe contener
+__Ruta de detalle de Pokemon__
 - [ ] Los campos mostrados en la ruta principal para cada pokemon (imagen, nombre y tipos)
 - [ ] Número de Pokemon (id)
 - [ ] Estadísticas (vida, fuerza, defensa, velocidad)
